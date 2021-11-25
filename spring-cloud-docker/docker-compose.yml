@@ -1,0 +1,25 @@
+version: '2'
+services:
+    docker-movie-microservice:
+        container_name: movie-server
+        build:
+            context: docker-movie-microservice
+            dockerfile: Dockerfile
+        image: movie-server:latest
+        ports:
+            - 18888:8888
+        networks:
+            - spring-cloud-network
+    docker-book-microservice:
+        container_name: book-server
+        build:
+            context: docker-book-microservice
+            dockerfile: Dockerfile
+        image: book-server:latest
+        ports:
+            - 19999:9999
+        networks:
+            - spring-cloud-network
+networks:
+    spring-cloud-network:
+        driver: bridge
